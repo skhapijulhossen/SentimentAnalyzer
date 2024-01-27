@@ -1,3 +1,5 @@
 nlpenv/
 code/__pycache__
 data/
+__pycache__
+app/__pycache__
