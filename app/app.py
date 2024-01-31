@@ -1,3 +1,8 @@
+from code.inferencePipeline import inference
+import pandas as pd
+import config
+import tensorflow as tf
+import streamlit as st
 import sys
 import os
 
@@ -6,11 +11,6 @@ parent = os.path.dirname(current)
 sys.path.append(parent)
 sys.path.append(os.path.join(parent, 'code'))
 
-import streamlit as st
-import tensorflow as tf
-import config
-import pandas as pd
-from code.inferencePipeline import inference
 
 # code to replace special character from string using regex
 
@@ -34,11 +34,9 @@ def run(model):
         LABELS = ('Positive', 'Negetive')
         if user_input:
             result = inference(model, data)
-            label = LABELS[tf.argmax(result, axis=1)]
-            prob = result[0, label]
-            st.success(f"Sentiment {label}: {prob}")
+            label_idx = tf.argmax(result, axis=1)[0]
+            label = LABELS[label_idx]
+            prob = result[0, label_idx]*100
+            st.success(f" {label} Sentiment: {prob:.2f}%")
         else:
             st.warning("Please enter some text before analyzing.")
-
-
-
