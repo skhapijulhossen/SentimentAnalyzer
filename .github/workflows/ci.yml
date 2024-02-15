@@ -20,6 +20,6 @@ jobs:
     - name: Build the Docker image
       run: docker build -t cicd-sentiment-analyzer .
     - name: Push to Dockerhub
-      run: docker push skhapijulhossen/cicd-pipeline:latest
+      run: docker push skhapijulhossen/cicd-sentiment-analyzer:latest
     # - name: Build the Docker image
     #   run: docker build . --file Dockerfile --tag sentimentanalyzer:$(date +%s)
